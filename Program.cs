@@ -114,7 +114,50 @@ namespace FirstBankSuncoast
                             Console.WriteLine("\n Not valid input. Try Again!");
                         }
                         break;
+                    case "W":
+                        Console.WriteLine("\nWhere would you like to withdraw from?: [C]hecking or [S]avings\n");
+                        var withdrawAccountChoice = Console.ReadLine().ToUpper();
 
+                        if (withdrawAccountChoice == "C")
+                        {
+                            var checkingWithdraw = new Transaction();
+
+                            checkingWithdraw.Type = "Withdraw";
+                            checkingWithdraw.Account = "Checking";
+                            checkingWithdraw.Amount = PromptForInteger("Withdraw Amount: $");
+                            checkingWithdraw.Date = DateTime.Now;
+
+                            Console.WriteLine($"\n${checkingWithdraw.Amount} Withdrawn from your checking account. \n");
+
+                            transactions.Add(checkingWithdraw);
+                        }
+                        else if (withdrawAccountChoice == "S")
+                        {
+                            var savingsWithdraw = new Transaction();
+
+                            savingsWithdraw.Type = "Withdraw";
+                            savingsWithdraw.Account = "Savings";
+                            savingsWithdraw.Amount = PromptForInteger("Withdraw Amount: $");
+                            savingsWithdraw.Date = DateTime.Now;
+
+                            Console.WriteLine($"\n${savingsWithdraw.Amount} Withdrawn from your savings account. \n");
+
+                            transactions.Add(savingsWithdraw);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n Not valid input. Try Again!");
+                        }
+                        break;
+
+
+                    case "V":
+
+                    case "B":
+
+                    case "Q":
+                        keepGoing = false;
+                        break;
 
                 }
 
