@@ -1,7 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FirstBankSuncoast
 {
+    class Transaction
+    {
+        public string Type { get; set; }
+        public string Account { get; set; }
+        public int Amount { get; set; }
+    }
+
+
     class Program
     {
 
@@ -52,6 +61,8 @@ namespace FirstBankSuncoast
         {
             DisplayGreeting();
             DisplayMenu();
+
+            var transactions = new List<Transaction>();
         }
     }
 }
