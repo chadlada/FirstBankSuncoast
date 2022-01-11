@@ -41,13 +41,17 @@ namespace FirstBankSuncoast
             }
         }
 
+        static void DisplayMenu()
+        {
+            Console.WriteLine("\n\nPlease choose from the following options:");
+            Console.WriteLine("[D]eposit\n[W]ithdraw\n[V]iew transaction history\n[B]alance Statement\n[Q]uit\n");
+        }
 
 
         static void Main(string[] args)
         {
             DisplayGreeting();
-            Console.WriteLine("Welcome to C#");
-
+            DisplayMenu();
         }
     }
 }
