@@ -68,6 +68,36 @@ namespace FirstBankSuncoast
 
             var transactions = new List<Transaction>();
 
+
+            // TEST DATA
+            var testTransaction = new Transaction()
+            {
+                Date = DateTime.Now,
+                Amount = 10,
+                Account = "Checking",
+                Type = "Deposit"
+            };
+            transactions.Add(testTransaction);
+            var testTransaction1 = new Transaction()
+            {
+                Date = DateTime.Now,
+                Amount = 10,
+                Account = "Savings",
+                Type = "Deposit"
+            };
+            transactions.Add(testTransaction1);
+            var testTransaction2 = new Transaction()
+            {
+                Date = DateTime.Now,
+                Amount = 5,
+                Account = "Checking",
+                Type = "Withdraw"
+            };
+            transactions.Add(testTransaction2);
+
+
+
+
             var keepGoing = true;
 
             while (keepGoing)
@@ -151,7 +181,24 @@ namespace FirstBankSuncoast
 
 
                     case "V":
-                    // VIEW TRANSACTION HISTORY
+                        // VIEW TRANSACTION HISTORY
+                        Console.WriteLine("\nTRANSACTION HISTORY:\n");
+
+                        foreach (var transaction in transactions)
+                        {
+                            if (transaction.Type == "Deposit")
+                            {
+                                Console.WriteLine($"{transaction.Date: M/dd/yyyy} {transaction.Type} to {transaction.Account}: ${transaction.Amount}\n ");
+                            }
+                            else if (transaction.Type == "Withdraw")
+                            {
+                                Console.WriteLine($"{transaction.Date: M/dd/yyyy} {transaction.Type} from {transaction.Account}: ${transaction.Amount}\n ");
+                            }
+                        }
+                        break;
+
+
+
 
                     case "B":
                         // BALANCE STATEMENT
