@@ -8,6 +8,9 @@ namespace FirstBankSuncoast
         public string Type { get; set; }
         public string Account { get; set; }
         public int Amount { get; set; }
+        public DateTime Date { get; set; }
+
+
     }
 
 
@@ -57,12 +60,65 @@ namespace FirstBankSuncoast
         }
 
 
+
+
         static void Main(string[] args)
         {
             DisplayGreeting();
-            DisplayMenu();
+
 
             var transactions = new List<Transaction>();
+
+            var keepGoing = true;
+
+            while (keepGoing)
+            {
+                DisplayMenu();
+                var choice = Console.ReadLine().ToUpper();
+
+                switch (choice)
+                {
+                    case "D":
+                        Console.WriteLine("\nWhere would you like to deposit to?: [C]hecking or [S]avings\n");
+                        var depositAccountChoice = Console.ReadLine().ToUpper();
+
+                        if (depositAccountChoice == "C")
+                        {
+                            var checkingDeposit = new Transaction();
+
+                            checkingDeposit.Type = "Desposit";
+                            checkingDeposit.Account = "Checking";
+                            checkingDeposit.Amount = PromptForInteger("Deposit Amount: $");
+                            checkingDeposit.Date = DateTime.Now;
+
+                            Console.WriteLine($"\n${checkingDeposit.Amount} desposited to your checking account. \n");
+
+                            transactions.Add(checkingDeposit);
+                        }
+
+                        else if (depositAccountChoice == "S")
+                        {
+                            var savingsDeposit = new Transaction();
+
+                            savingsDeposit.Type = "Desposit";
+                            savingsDeposit.Account = "Checking";
+                            savingsDeposit.Amount = PromptForInteger("Deposit Amount: $");
+                            savingsDeposit.Date = DateTime.Now;
+
+                            Console.WriteLine($"\n${savingsDeposit.Amount} desposited to your savings account. \n");
+
+                            transactions.Add(savingsDeposit);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n Not valid input. Try Again!");
+                        }
+                        break;
+
+
+                }
+
+            }
         }
     }
 }
