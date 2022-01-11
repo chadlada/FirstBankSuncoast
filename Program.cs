@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstBankSuncoast
 {
@@ -9,8 +10,6 @@ namespace FirstBankSuncoast
         public string Account { get; set; }
         public int Amount { get; set; }
         public DateTime Date { get; set; }
-
-
     }
 
 
@@ -152,8 +151,30 @@ namespace FirstBankSuncoast
 
 
                     case "V":
+                    // VIEW TRANSACTION HISTORY
 
                     case "B":
+                        // BALANCE STATEMENT
+                        var totalCheckingDeposits = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Deposit")
+                   .Sum(transaction => transaction.Amount);
+                        var totalCheckingWithdraws = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Withdraw")
+                        .Sum(transaction => transaction.Amount);
+                        var totalChecking = totalCheckingDeposits - totalCheckingWithdraws;
+
+                        var totalSavingsDeposits = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Deposit")
+                   .Sum(transaction => transaction.Amount);
+                        var totalSavingsWithdraw = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Withdraw")
+                        .Sum(transaction => transaction.Amount);
+                        var totalSavings = totalSavingsDeposits - totalSavingsWithdraw;
+
+
+
+                        Console.WriteLine("\nACCOUNT BALANCES: \n");
+                        Console.WriteLine($"Checking: ${totalChecking}");
+                        Console.WriteLine($"Savings: ${totalSavings}\n");
+
+                        break;
+
 
                     case "Q":
                         keepGoing = false;
